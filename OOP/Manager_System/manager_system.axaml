@@ -1,0 +1,129 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:Manager_System.ViewModel"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        Icon="/Assets/avalonia-logo.ico"
+        x:Class="Manager_System.View.Manager"
+        Title="Система манагера"
+        MinHeight="600"
+        MaxHeight="600"
+        Height="600"
+        MinWidth="1402"
+        MaxWidth="1402"
+        Width="1402"
+        Closing="DataWindow_Closing">
+
+        <Design.DataContext>
+            <vm:Manager_System_ViewModel/>
+        </Design.DataContext>
+
+        <StackPanel Orientation="Horizontal">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" Height="75">
+                    <TextBlock VerticalAlignment="Center" Width="200" Text="фамилия"/>
+                    <TextBox VerticalAlignment="Center" Width="200" Text="{Binding temp_person.last_name}" IsReadOnly="True"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="75">
+                    <TextBlock VerticalAlignment="Center" Width="200" Text="имя"/>
+                    <TextBox VerticalAlignment="Center" Width="200" Text="{Binding temp_person.first_name}" IsReadOnly="True"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="75">
+                    <TextBlock VerticalAlignment="Center" Width="200" Text="отчество"/>
+                    <TextBox VerticalAlignment="Center" Width="200" Text="{Binding temp_person.patronymic}" IsReadOnly="True"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="75">
+                    <TextBlock VerticalAlignment="Center" Width="200" Text="серия паспорта"/>
+                    <TextBox VerticalAlignment="Center" Width="200" Text="{Binding temp_person.passport_series.Text}" IsReadOnly="True"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="75">
+                    <TextBlock VerticalAlignment="Center" Width="200" Text="номер паспорта"/>
+                    <TextBox VerticalAlignment="Center" Width="200" Text="{Binding temp_person.passport_num}" IsReadOnly="True"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="75">
+                    <TextBlock VerticalAlignment="Center" Width="200" Text="индефикационный номер"/>
+                    <TextBox VerticalAlignment="Center" Width="200" Text="{Binding temp_person.index_num}" IsReadOnly="True"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="75">
+                    <TextBlock VerticalAlignment="Center" Width="200" Text="номер телефона"/>
+                    <TextBox VerticalAlignment="Center" Width="200" Text="{Binding temp_person.phone}" IsReadOnly="True"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="75">
+                    <TextBlock VerticalAlignment="Center" Width="200" Text="Email"/>
+                    <TextBox VerticalAlignment="Center" Width="200" Text="{Binding temp_person.email}" IsReadOnly="True"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Запросы на регистрацию"></TextBlock>
+                <ComboBox Width="600" Items="{Binding app_person}" SelectedItem="{Binding temp_person1}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding first_name}"></TextBlock>
+                                <TextBlock Text=" "></TextBlock>
+                                <TextBlock Text="{Binding last_name}"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Button Width="600" Click="show_info">посмотреть информацию</Button>
+                <StackPanel Orientation="Horizontal">
+                    <Button Width="300" Click="appr_person">одобрить запрос</Button>
+                    <Button Width="300" Click="reject_person">отклонить запрос</Button>
+                </StackPanel>
+                <TextBlock Text="Запросы на кредит/рассрочку"></TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <Button Width="300" Click="appr">одобрить запрос</Button>
+                    <Button Width="300" Click="reject">отклонить запрос</Button>
+                </StackPanel>
+                <ComboBox Width="600" Items="{Binding operations}" SelectedItem="{Binding temp}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding apr}"></TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <ListBox Height="210" Width="600" Items="{Binding operations}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding apr}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+            <StackPanel>
+            <TextBlock Text="Запросы на З/П"></TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <Button Width="200" Click="appr_salary">одобрить запрос</Button>
+                    <Button Width="200" Click="reject_salary">отклонить запрос</Button>
+                </StackPanel>
+                <ComboBox Width="400" Items="{Binding salary_accounts}" SelectedItem="{Binding appr_sal}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding name}"></TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel>
+                <ComboBox Width="400" Height="50" Items="{Binding events}" SelectedItem="{Binding temp_events}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding eve}"></TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Button Width="400" Height="60" Click="cancel">отменить перевод</Button>
+                <ListBox Height="490" Width="400" Items="{Binding events}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding eve}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+        </StackPanel>
+
+
+</Window>

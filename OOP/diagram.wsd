@@ -1,0 +1,429 @@
+@startuml
+
+namespace Main{
+class MainWindowViewModel
+{
+    Datetime date
+    List<Person> person
+    List<Events> events
+    Events temp_events
+    List<Operations> operations
+    Person temp_person
+    Person temp_person1
+    Operations temp
+    int num_
+    List<company> related_company
+    List<salary> salary_accounts
+    salary appr_sal
+    List<log> logs
+
+    void add_sal_acc(string name, string company_name,
+    bank_account salary_acc, int person_num)
+    void setnum()
+    void add_event(string e)
+    void change_time()
+    void add_event(string e, Person p, bank_account b, double m, int o)
+    void add_event(string e, bank_account b,
+    bank_account r_b, double m, int o)
+    void add_operations(string o, int n)
+    void remove_operations()
+    void remove_event()
+    events.Remove(temp_events);
+    events.Remove(events[events.Count-1]);
+    void remove_transfer()
+    void exception()
+}
+log <|-- MainWindowViewModel
+Person <|-- MainWindowViewModel
+company <|-- MainWindowViewModel
+Operations <|-- MainWindowViewModel
+
+class log
+{
+    string name
+    log()
+    log(string name)
+}
+salary <|-- MainWindowViewModel
+
+class salary
+{
+    string name
+    string company_name
+    bank_account salary_acc
+    int person_num
+
+    salary()
+
+    salary(string name, string company_name,
+    bank_account salary_acc, int person_num)
+}
+Events <|-- MainWindowViewModel
+
+class Events
+{
+    string eve
+    Person temp_person
+    bank_account temp_bank
+    double temp_money
+    bank_account temp_recipient_bank
+    int operation
+
+    Events(string eve)
+
+    Events(string eve, Person temp_person,
+    bank_account temp_bank, double temp_money, int operation)
+
+    Events(string eve, bank_account temp_bank, bank_account
+    temp_recipient_bank, double temp_money, int operation)
+
+}
+    class Operations
+    {
+        int num
+        string apr
+        
+        Operations(string apr, int num)
+    }
+
+MainWindowViewModel <|-- MainWindow
+Window <|-- MainWindow
+
+class MainWindow
+{
+    List<MainWindowViewModel> main
+    string check_login
+    string check_password
+    int Bank_num
+
+    MainWindow()
+
+    void create_aboba(object sender, RoutedEventArgs e)
+
+    void create_bank(object sender, RoutedEventArgs e)
+
+    void create_company(object sender, RoutedEventArgs e)
+
+    void create_manager(object sender, RoutedEventArgs e)
+
+    void create_operator(object sender, RoutedEventArgs e)
+
+    void create_admin(object sender, RoutedEventArgs e)
+
+    void InitializeComponent()
+}
+}
+
+namespace Operator{
+Window <|--Operator
+class Operator
+{
+
+    MainWindow Owner
+    MainWindowViewModel main
+    List<Person> person
+    int Bank_num
+
+    Operator()
+
+    Operator(MainWindowViewModel main, List<Person> person, int Bank_num)
+
+    private void InitializeComponent()
+
+    void DataWindow_Closing(object sender, CancelEventArgs e)
+
+    void cancel(object sender, RoutedEventArgs e)
+
+    void appr_salary(object sender, RoutedEventArgs e)
+
+    void reject_salary(object sender, RoutedEventArgs e)
+}
+    Person <|-- Operator
+    MainWindow <|-- Operator
+}
+ namespace Manager{
+Window <|--Manager
+Person <|-- Manager
+MainWindow <|-- Manager
+class Manager
+    {
+
+        MainWindow Owner
+        MainWindowViewModel main
+        List<Person> person
+        int Bank_num
+
+        Manager()
+
+        Manager(MainWindowViewModel main, List<Person> person, int Bank_num)
+
+        void InitializeComponent()
+
+        void DataWindow_Closing(object sender, CancelEventArgs e)
+
+        void appr(object sender, RoutedEventArgs e)
+
+        void cancel(object sender, RoutedEventArgs e)
+
+        void reject(object sender, RoutedEventArgs e)
+
+        void show_info(object sender, RoutedEventArgs e)
+
+        void appr_person(object sender, RoutedEventArgs e)
+
+        void reject_person(object sender, RoutedEventArgs e)
+
+        void appr_salary(object sender, RoutedEventArgs e)
+
+        void reject_salary(object sender, RoutedEventArgs e)
+    }
+ }
+
+namespace Company{
+class stuff
+    {
+
+        string first_name
+        string last_name
+        string patronymic
+        TextBlock passport_series
+        string passport_num
+        string index_num
+        string phone
+        string email
+
+        stuff()
+    }
+
+   class company
+   {
+       int comp_num
+       string type
+       string name
+       int UNP
+       string addres
+       string login
+       string Bank_name
+       List<stuff> persons
+       stuff temp_person
+
+       void add_person()
+
+       company()
+
+       company(string type, string name, int UNP, string addres, string login, int comp_num, string Bank_name)
+   }
+
+Window <|--Company_Manager
+MainWindowViewModel <|-- Company_Manager
+company <|-- Company_Manager
+stuff <|-- company
+class Company_Manager
+    {
+
+        MainWindow Owner
+
+        company this_company
+
+        MainWindowViewModel main 
+
+        int Bank_num
+
+        Company_Manager()
+
+        void add_pers(object sender, RoutedEventArgs e)
+
+        Company_Manager(MainWindowViewModel main, int Bank_num, company comp)
+
+        void InitializeComponent()
+
+        void DataWindow_Closing(object sender, CancelEventArgs e)
+    }
+}
+
+namespace Bank{
+class bank_account
+   {
+      int freez
+      int acc
+      string acc_name
+      double acc_money
+      int number
+      int sender
+      bool salary_applse
+      DateTime salary_time
+       
+      bank_account(string Name)
+
+      bank_account(string Name, int Acc)
+   }
+
+Window <|--Bank
+bank_account <|-- Person
+
+   class Person 
+   {
+
+      Person()
+
+      string first_name
+      string last_name
+      string patronymic
+      TextBlock passport_series
+      string passport_num
+      string index_num
+      string phone
+      string email
+
+      string login
+      string password
+      string repeat_password
+
+      bool input_finish()
+
+      int sender
+      string recipient_lastname
+      string recipient_firstname
+      int recipient_number
+      double recipient_money
+
+      bool credit_exists
+      bool credit_app
+      bool salary_exists
+      int num
+      List<bank_account> accounts
+      int search_acc
+      int search_num
+      string add_acc
+      string add_sav_acc
+      int add_freez
+      double acc_put
+      double acc_withdraw
+      int search_credit_acc
+      double money_credit
+      string credit_
+
+      DateTime credit_time
+      int credit_counter
+      double credit_withdraw
+      int credit_account
+      
+      string time_
+      int time
+      int credit
+
+      string search_company
+      int company_acc
+
+
+      void get_zp(MainWindowViewModel main, int person_num)
+
+      void add_acc_f()
+
+      void add_sav_acc_f()
+
+      void freez_acc()
+
+      void rem_acc()
+
+      void rem_All()
+
+      void put_money(MainWindowViewModel main, int check_credit, int admin)
+
+      void transfer(MainWindowViewModel main, bank_account recipient, bank_account sender, double put)
+
+      void Set_credit()
+
+      void Get_credit(MainWindowViewModel main)
+
+      void withdraw_money(MainWindowViewModel main, int check_credit, int admin)
+   }
+
+Person <|--Bank
+MainWindowViewModel <|-- Bank
+
+class Bank
+    {
+        MainWindow Owner
+
+        Person person
+
+        int person_num
+        int Bank_num
+
+        MainWindowViewModel main
+    
+
+        Bank(MainWindowViewModel main, Person person, int person_num, int Bank_num)
+
+        Bank()
+
+        void InitializeComponent()
+
+        void DataWindow_Closing(object sender, CancelEventArgs e)
+
+        void add_account(object sender, RoutedEventArgs e)
+
+        void add_savings_account(object sender, RoutedEventArgs e)
+
+        void Get_zp(object sender, RoutedEventArgs e)
+
+        void freez_account(object sender, RoutedEventArgs e)
+
+        void rem_account(object sender, RoutedEventArgs e)
+
+        void get_credit(object sender, RoutedEventArgs e)
+
+        void rem_all(object sender, RoutedEventArgs e)
+
+        void transfer(object sender, RoutedEventArgs e)
+
+        void put_account(object sender, RoutedEventArgs e)
+
+        void withdraw_account(object sender, RoutedEventArgs e)
+    }   
+}
+
+namespace Admin{
+Window <|--Admin_acc
+MainWindowViewModel <|-- Admin_acc
+class Admin_acc
+    {
+
+        MainWindow Owner
+        MainWindowViewModel main
+        int Bank_num
+
+        Admin_acc()
+
+        Admin_acc(MainWindowViewModel main, int Bank_num)
+
+        InitializeComponent()
+
+        void DataWindow_Closing(object sender, CancelEventArgs e)
+    }
+}
+
+namespace Aboba{
+Window <|--Aboba_View
+Person <|-- Aboba_View
+
+class Aboba_View
+    {
+        
+        MainWindow Owner
+        Person newperson
+        int Bank_num
+
+        Aboba_View()
+
+        Aboba_View(int Bank_num)
+
+        void InitializeComponent()
+
+        void DataWindow_Closing(object sender, CancelEventArgs e)
+
+        void button_Click(object sender, RoutedEventArgs e)
+    }
+}
+@enduml

@@ -1,0 +1,33 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:Admin.ViewModel"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        Icon="/Assets/avalonia-logo.ico"
+        x:Class="Admin.View.Admin_acc"
+        Title="Система админа"
+        MinHeight="600"
+        MaxHeight="600"
+        Height="600"
+        MinWidth="802"
+        MaxWidth="802"
+        Width="802"
+        Closing="DataWindow_Closing">
+
+        <Design.DataContext>
+            <vm:Admin_ViewModel/>
+        </Design.DataContext>
+
+        <StackPanel Orientation="Horizontal">
+            <ListBox Height="520" Width="400" Items="{Binding logs}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding name}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+
+
+</Window>

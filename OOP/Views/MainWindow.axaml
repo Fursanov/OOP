@@ -1,0 +1,36 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:entry.Views"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local = "clr-namespace:entry.Views" 
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="entry.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Войти"
+        MinHeight="280"
+        MinWidth="270"
+        Height="280"
+        Width="270">
+
+    <Design.DataContext>
+        <vm:MainWindow/>
+    </Design.DataContext>
+
+    <StackPanel Width="230" HorizontalAlignment="Center" VerticalAlignment="Center">
+      <TextBox Watermark="введите логин" Text="{Binding check_login}"></TextBox>
+      <TextBox Watermark="введите пароль" Text="{Binding check_password}"></TextBox>
+      <ComboBox Width="230" SelectedIndex="{Binding Bank_num}">
+            <TextBlock Text="AboBank"/>  
+            <TextBlock Text="хрен вам банк"/>  
+            <TextBlock Text="Банк Барыга"/>  
+      </ComboBox>
+      <Button Width="230" Click="create_bank">войти в аккаунт</Button>
+      <Button Width="230" Click="create_aboba">Зарегистрироваться</Button>
+      <Button Width="230" Click="create_operator">оператор</Button>
+      <Button Width="230" Click="create_company">манагер предприятия</Button>
+      <Button Width="230" Click="create_manager">манагер</Button>
+      <Button Width="230" Click="create_admin">админ</Button>
+   </StackPanel>
+
+</Window>

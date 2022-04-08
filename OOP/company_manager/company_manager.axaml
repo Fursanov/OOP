@@ -1,0 +1,76 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:Company_Manager_System.ViewModel"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        Icon="/Assets/avalonia-logo.ico"
+        x:Class="Company_Manager_System.View.Company_Manager"
+        Title="Company_Manager_System"
+        MinHeight="700"
+        MaxHeight="700"
+        Height="700"
+        MinWidth="902"
+        MaxWidth="902"
+        Width="902"
+        Closing="DataWindow_Closing">
+
+        <Design.DataContext>
+            <vm:Company_Manager_System_ViewModel/>
+        </Design.DataContext>
+
+        <StackPanel Width="230">
+            <TextBlock VerticalAlignment="Center" Text="{Binding type}"/>
+            <TextBlock VerticalAlignment="Center" Text="{Binding name}"/>
+            <TextBlock VerticalAlignment="Center" Text="{Binding UNP}"/>
+            <TextBlock VerticalAlignment="Center" Text="{Binding addres}"/>
+            <TextBox Watermark="Фамилия" Text="{Binding temp_person.last_name}"></TextBox>
+            <TextBox Watermark="Имя" Text="{Binding temp_person.first_name}"></TextBox>
+            <TextBox Watermark="Отчество" Text="{Binding temp_person.patronymic}"></TextBox>
+            <ComboBox Width="230" SelectedItem="{Binding temp_person.passport_series}">
+                <TextBlock Text="AB"></TextBlock>
+                <TextBlock Text="KB"></TextBlock>
+                <TextBlock Text="HB"></TextBlock>
+                <TextBlock Text="KH"></TextBlock>
+                <TextBlock Text="MP"></TextBlock>
+                <TextBlock Text="MC"></TextBlock>
+                <TextBlock Text="KB"></TextBlock>
+                <TextBlock Text="PP"></TextBlock>
+                <TextBlock Text="SP"></TextBlock>
+                <TextBlock Text="DP"></TextBlock>
+            </ComboBox>
+            <TextBox Watermark="Номер паспорта" Text="{Binding temp_person.passport_num}"></TextBox>
+            <TextBox Watermark="Индификационный номер" Text="{Binding temp_person.index_num}"></TextBox>
+            <TextBox Watermark="телефон" Text="{Binding temp_person.phone}"></TextBox>
+            <TextBox Watermark="Email" Text="{Binding temp_person.email}"></TextBox>
+            <Button Width="230" Click="add_pers">добавить сотрудника</Button>
+            <ListBox Height="370" Width="600" Items="{Binding persons}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock VerticalAlignment="Center" Text="{Binding last_name}"/>
+                            <TextBlock VerticalAlignment="Center" Text=" "/>
+                            <TextBlock VerticalAlignment="Center" Text="{Binding first_name}"/>
+                            <TextBlock VerticalAlignment="Center" Text=" "/>
+                            <TextBlock VerticalAlignment="Center" Text="{Binding patronymic}"/>
+                            <TextBlock VerticalAlignment="Center" Text=" "/>
+                            <TextBlock VerticalAlignment="Center" Text="{Binding passport_series.Text}"/>
+                            <TextBlock VerticalAlignment="Center" Text=" "/>
+                            <TextBlock VerticalAlignment="Center" Text="{Binding passport_num}"/>
+                            <TextBlock VerticalAlignment="Center" Text=" "/>
+                            <TextBlock VerticalAlignment="Center" Text="{Binding index_num}"/>
+                            <TextBlock VerticalAlignment="Center" Text=" "/>
+                            <TextBlock VerticalAlignment="Center" Text="{Binding phone}"/>
+                            <TextBlock VerticalAlignment="Center" Text=" "/>
+                            <TextBlock VerticalAlignment="Center" Text="{Binding email}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+
+
+
+
+
+</Window>

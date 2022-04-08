@@ -1,0 +1,65 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:Operator_System.ViewModel"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        Icon="/Assets/avalonia-logo.ico"
+        x:Class="Operator_System.View.Operator"
+        Title="Система оператора"
+        MinHeight="600"
+        MaxHeight="600"
+        Height="600"
+        MinWidth="802"
+        MaxWidth="802"
+        Width="802"
+        Closing="DataWindow_Closing">
+
+        <Design.DataContext>
+            <vm:Operator_System_ViewModel/>
+        </Design.DataContext>
+
+        <StackPanel Orientation="Horizontal">
+            <StackPanel>
+                <TextBlock Text="Запросы на З/П"></TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <Button Width="200" Click="appr_salary">одобрить запрос</Button>
+                    <Button Width="200" Click="reject_salary">отклонить запрос</Button>
+                </StackPanel>
+                <ComboBox Width="400" Items="{Binding salary_accounts}" SelectedItem="{Binding appr_sal}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding name}"></TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <ListBox Height="520" Width="400" Items="{Binding salary_accounts}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding name}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="переводы средств"></TextBlock>
+                <ComboBox Width="400" Height="50" Items="{Binding events}" SelectedItem="{Binding temp_events}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding eve}"></TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Button Width="400" Height="60" Click="cancel">отменить перевод</Button>
+                <ListBox Height="480" Width="400" Items="{Binding events}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding eve}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+        </StackPanel>
+
+
+</Window>

@@ -1,0 +1,166 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:Bank_System.ViewModel"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        Icon="/Assets/avalonia-logo.ico"
+        x:Class="Bank_System.View.Bank"
+        Title="Банковская Система"
+        MinHeight="700"
+        MaxHeight="700"
+        Height="700"
+        MinWidth="1002"
+        MaxWidth="1002"
+        Width="1002"
+        Closing="DataWindow_Closing">
+
+        <Design.DataContext>
+            <vm:Bank_System_ViewModel/>
+        </Design.DataContext>
+
+    <StackPanel Width="600" HorizontalAlignment="50" VerticalAlignment="50">
+        <StackPanel Height="370" Width="600" Orientation="Horizontal">
+            <ListBox Height="370" Width="600" Items="{Binding accounts}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock VerticalAlignment="Center" Text="№ счёта: "/>
+                            <TextBox Text="{Binding number}" IsReadOnly="True"/>
+                            <TextBlock VerticalAlignment="Center" Text=" имя счёта: "/>
+                            <TextBlock VerticalAlignment="Center" Text="{Binding acc_name}"/>
+                            <TextBlock VerticalAlignment="Center" Text=" деньги:"/>
+                            <TextBlock VerticalAlignment="Center" Text="{Binding acc_money}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <StackPanel>
+                <TextBox Text="{Binding add_acc}" Watermark="имя счёта"></TextBox>
+                <Button Width="400" Click="add_account">создать счёт</Button>
+                <TextBox Text="{Binding add_sav_acc}" Watermark="имя счёта"></TextBox>
+                <Button Width="400" Click="add_savings_account">создать накопительный счёт</Button>
+                <ComboBox Width="400" Items="{Binding accounts}" SelectedIndex="{Binding add_freez}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                                <TextBlock Text="{Binding acc_name}"></TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Button Width="400" Click="freez_account">заморозить/разморозить счёт</Button>
+                <ComboBox Width="400" Items="{Binding accounts}" SelectedIndex="{Binding search_num}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding acc_name}"></TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Button Width="400" Click="rem_account">удалить счёт №:</Button>
+                <Button Width="400" Click="rem_all">удалить все счёта</Button>
+                <ComboBox Width="400" Items="{Binding accounts}" SelectedIndex="{Binding search_acc}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding acc_name}"></TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Width="200" Watermark="введите сумму" Text="{Binding acc_put}"></TextBox>
+                    <Button Width="200" Click="put_account">положить деньги:</Button>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Width="200" Watermark="введите сумму" Text="{Binding acc_withdraw}"></TextBox>
+                    <Button Width="200" Click="withdraw_account">снять деньги</Button>
+                </StackPanel>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Width="200"/>
+                        <TextBlock HorizontalAlignment="Left" Width="200" Text="информация пользователя"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock VerticalAlignment="Center" Width="200" Text="фамилия"/>
+                        <TextBox Width="200" Text="{Binding last_name}" IsReadOnly="True"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock VerticalAlignment="Center" Width="200" Text="имя"/>
+                        <TextBox Width="200" Text="{Binding first_name}" IsReadOnly="True"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock VerticalAlignment="Center" Width="200" Text="отчество"/>
+                        <TextBox Width="200" Text="{Binding patronymic}" IsReadOnly="True"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock VerticalAlignment="Center" Width="200" Text="серия паспорта"/>
+                        <TextBox Width="200" Text="{Binding passport_series.Text}" IsReadOnly="True"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock VerticalAlignment="Center" Width="200" Text="номер паспорта"/>
+                        <TextBox Width="200" Text="{Binding passport_num}" IsReadOnly="True"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock VerticalAlignment="Center" Width="200" Text="индефикационный номер"/>
+                        <TextBox Width="200" Text="{Binding index_num}" IsReadOnly="True"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock VerticalAlignment="Center" Width="200" Text="номер телефона"/>
+                        <TextBox Width="200" Text="{Binding phone}" IsReadOnly="True"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock VerticalAlignment="Center" Width="200" Text="Email"/>
+                        <TextBox Width="200" Text="{Binding email}" IsReadOnly="True"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+            <StackPanel Height="370" Width="600" Orientation="Horizontal">
+                <StackPanel>
+                    <TextBlock>перевод средств</TextBlock>
+                    <ComboBox Width="300" Items="{Binding accounts}" SelectedIndex="{Binding sender}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding acc_name}"></TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <TextBox Width="300" Watermark="фамилия получателя" Text="{Binding recipient_lastname}"></TextBox>
+                    <TextBox Width="300" Watermark="имя получателя" Text="{Binding recipient_firstname}"></TextBox>
+                    <TextBox Width="300" Watermark="№ счёта получателя" Text="{Binding recipient_number}"></TextBox>
+                    <TextBox Width="300" Watermark="сумма" Text="{Binding recipient_money}"></TextBox>
+                    <Button Width="300" Click="transfer">оформить перевод</Button>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock>выдача кредита/рассрочки</TextBlock>
+                    <ComboBox Width="300" Items="{Binding accounts}" SelectedIndex="{Binding search_credit_acc}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding acc_name}"></TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <TextBox Width="300" Watermark="введите сумму" Text="{Binding money_credit}" HorizontalAlignment="Left"></TextBox>
+                    <ComboBox Width="300" SelectedIndex="{Binding credit}">
+                        <TextBlock Text="кредит"></TextBlock>
+                        <TextBlock Text="расрочка"></TextBlock> 
+                    </ComboBox>
+                    <ComboBox Width="300" SelectedIndex="{Binding time}">
+                        <TextBlock>3 месяца</TextBlock>
+                        <TextBlock>6 месяцев</TextBlock> 
+                        <TextBlock>12 месяцев</TextBlock> 
+                        <TextBlock>24 месяца</TextBlock>
+                        <TextBlock>48 месяцев</TextBlock>
+                    </ComboBox>
+                    <Button Width="300" Click="get_credit">получить кредит/рассрочку</Button>
+                    <TextBox Width="300" Watermark="предприятие" Text="{Binding search_company}"></TextBox>
+                    <ComboBox Width="300" Items="{Binding accounts}" SelectedIndex="{Binding company_acc}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding acc_name}"></TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Button Width="300" Click="Get_zp">подать заявку на зарплату</Button>
+                </StackPanel>
+            </StackPanel>
+    </StackPanel>
+
+</Window>
