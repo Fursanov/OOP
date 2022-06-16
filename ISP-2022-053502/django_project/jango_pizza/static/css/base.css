@@ -1,0 +1,85 @@
+/* static/css/base.css */
+
+body {
+    font-family: "Goudy Bookletter 1911", sans-serif;
+  }
+   
+  header {
+    border-bottom: 5px solid #999;
+    margin-bottom: 2rem;
+    display: flex;
+  }
+
+  header  a button{
+    width: 350px;
+    font-weight: 900;
+    font-size: 23px;
+  }
+
+  div p{
+    color: rgb(5, 5, 33);
+    width: 350px;
+    font-weight: 400;
+    font-size: 60px;
+  }
+
+  div h2{
+    color: rgb(5, 5, 33);
+    font-weight: 400;
+    font-size: 60px;
+  }
+
+  div button{
+    width: 350px;
+    font-weight: 900;
+    font-size: 60px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  }
+
+  header  a{
+    font-weight: 900;
+    font-size: 50px;
+  }
+   
+  header h1 a {
+    color: rgb(50, 230, 26);
+    text-decoration: none;
+    position: relative;
+    left: 550px;
+  }
+   
+  .nav-left {
+    margin-right: auto;
+  }
+   
+  .nav-right {
+    display: flex;
+    padding-top: 2rem;
+  }
+   
+  .post-entry {
+    margin-bottom: 2rem;
+  }
+   
+  .post-entry h2 {
+    margin: 0.5rem 0;
+  }
+   
+  .post-entry h2 a,
+  .post-entry h2 a:visited {
+    color: rgb(5, 5, 33);
+    text-decoration: none;
+    position: relative;
+    left: 550px;
+    top: 150;
+  }
+   
+  .post-entry p {
+    margin: 0;
+    font-weight: 400;
+  }
+   
+  .post-entry h2 a:hover {
+    color: rgb(38, 160, 93);
+  }
+  

@@ -1,0 +1,21 @@
+<!-- templates/base.html -->
+{% load static %}
+<html>
+  <head>
+    <title>Django Pizza</title>
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+      <img  class="positioned"src="/media/images/logo.png" style="height:200px">
+      <h1><a href="{% url 'home' %}">Django Pizza</a></h1>
+      <a href="{% url 'login' %}"><button class="positioned">войти</button></a>
+      <a href="{% url 'register' %}"><button class="positioned">Регистрация</button></a>
+      <a href="{% url 'profile' %}"><button class="positioned">профиль</button></a>
+    </header>
+    <div>
+      {% block content %}
+      {% endblock content %}
+    </div>
+  </body>
+</html>

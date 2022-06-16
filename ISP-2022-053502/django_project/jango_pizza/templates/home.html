@@ -1,0 +1,14 @@
+<!-- templates/home.html -->
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  {% for post in object_list %}
+  <link href="{% static 'css/home.css' %}" rel="stylesheet">
+  <div class="post-entry">
+    <h2 class="positioned"><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
+    <img  class="positioned"src="{{ post.image.url}}" style="height:200px">
+    <p class="positioned" class="price">{{ post.cost }} byn</p>
+    <a href="{% url 'buy' %}"></a><button class="positioned">В корзину</button></a>
+  </div>
+  {% endfor %}
+{% endblock content %}
